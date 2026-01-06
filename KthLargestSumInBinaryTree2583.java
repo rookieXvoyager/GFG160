@@ -42,51 +42,5 @@ public class KthLargestSumInBinaryTree2583 {
         return k>lvlSum.size()?-1:lvlSum.get(lvlSum.size()-k);
     }
 
-    static TreeNode constructTree(Integer [] roots)
-    {
-        if(roots.length==0)return null;
-        TreeNode root =new TreeNode(roots[0]);
-        Queue <TreeNode> queue =new LinkedList<>();
-        queue.offer(root);
-        int idx=1;
-        while(!queue.isEmpty())
-        {
-            TreeNode curr=queue.poll();
-            if(idx<roots.length && roots[idx]!=null)
-            {
-                curr.left=new TreeNode(roots[idx]);
-                queue.offer(curr.left);
-            }
-            idx++;
-            if(idx<roots.length && roots[idx]!=null)
-            {
-                curr.right=new TreeNode(roots[idx]);
-                queue.offer(curr.right);
-            }
-            idx++;
-        }
-        return root;
-
-    }
-
-    public static void main(String[] args) {
-        Scanner sc =new Scanner(System.in);
-        System.out.println("Enter tree node values seperated by space:");
-        String [] inp =sc.nextLine().split(" ");
-        Integer [] roots =new Integer[inp.length];
-        int index=0;
-        for(String str:inp)
-        {
-            if(str.equalsIgnoreCase("null"))
-            {
-                roots[index++]=null;
-            }else{
-                roots[index++]=Integer.parseInt(str);
-            }
-        }
-        TreeNode root =constructTree(roots);
-        System.out.println("Enter the value of k:");
-        int k=sc.nextInt();
-        System.out.println("The "+k+"th largest level sum of the tree is:"+kthLargestLevelSum(root,k));
-    }
+    
 }
